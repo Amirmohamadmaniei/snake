@@ -1,0 +1,39 @@
+{% load static %}
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Snake </title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <script src="{% static 'script.js' %}" defer></script>
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+            <div class="game-detail">
+                <span class="score" style="font-size: 1.1rem;"> Score : 0 </span>
+                <span class="username" style="font-size: 1.1rem;"> User : <a href="{% url 'account:logout' %}" style="color: #b8c6dc; text-decoration-line: none;">{{ request.user.username }}</a> </span>
+                <span class="high-score" style="font-size: 1.1rem;"> high score : {{ high_score }} </span>
+                <input id="high-score" type="hidden" value="{{ high_score }}">
+            </div>
+
+                <form id="form-score" method="post">
+                    {% csrf_token %}
+                    <input id="score" type="hidden" name="score">
+<!--                    <input type="submit">-->
+                </form>
+
+            <div class="play-board"></div>
+
+            <div class="controls">
+                <i data-key="ArrowLeft" class="fa-solid fa-arrow-left-long"></i>
+                <i data-key="ArrowUp" class="fa-solid fa-arrow-up-long"></i>
+                <i data-key="ArrowRight" class="fa-solid fa-arrow-right-long"></i>
+                <i data-key="ArrowDown" class="fa-solid fa-arrow-down-long"></i>
+            </div>
+        </div>
+    </body>
+</html>

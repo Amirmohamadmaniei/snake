@@ -1,0 +1,58 @@
+{% load static %}
+
+
+<html>
+    <head>
+        <title> login </title>
+        <link rel="stylesheet" href="{% static 'form.css' %}">
+    </head>
+
+    <body>
+        <div class="box" id="box-register">
+            <span class="borderline"></span>
+            <form method="post">
+                {% csrf_token %}
+                <h2> Login </h2>
+
+                {% if form.non_field_errors or form.username.errors %}
+                    {% for error in form.non_field_errors %}
+                        <br>
+                        <h4 style="color: red; text-align: center;">{{ error }}</h4>
+                    {% endfor %}
+                    {% for error in form.username.errors %}
+                        <h4 style="color: red; text-align: center;">{{ error }}</h4>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+
+
+                <div class="inputbox">
+                    {{ form.username }}
+                    <span> Username </span>
+                    <i></i>
+                </div>
+
+                <div class="inputbox">
+                    {{ form.password }}
+                    <span> Password </span>
+                    <i></i>
+                </div>
+
+                <div class="inputbox">
+                    {{ form.password2 }}
+                    <span> Confrim Password </span>
+                    <i></i>
+                </div>
+
+                <div class="links">
+                    <a href=""></a>
+                    <a href="{% url 'account:login' %}">Sign in</a>
+                </div>
+
+                <input type="submit" text="Login">
+
+
+            </form>
+        </div>
+    </body>
+</html>
